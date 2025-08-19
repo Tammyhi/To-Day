@@ -1,0 +1,35 @@
+/* CSS Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+input, button, textarea, select {
+    font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+
+p {
+    text-wrap: pretty;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+}
+
+/* Custom Color Variables*/
+:root {
+    --dark-primary: #2a2a2a;
+    --dark-accent: #2ecc71;
+    --dark-text: #f9f9f9;
+    --light-primary: #f9f9f9;
+    --light-accent: #cc402e;
+    --light-text: #2a2a2a;
+}
