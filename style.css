@@ -49,3 +49,33 @@ body {
 main {
     flex: 1;
 }
+
+header {
+    margin-bottom: clamp(4px, 2vh, 20px);
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.section__list__item {
+    display: flex;
+    gap: clamp(2px, 1vw, 8px);
+}
+
+.section__list__toggles {
+    display: flex;
+    gap: clamp(4px, 5vw, 20px);
+    padding: clamp(4px, 2vh, 16px);
+    padding-left: 0;
+}
+
+.inactive {
+    opacity: 50%;
+}
+
+.fa-circle {
+    color: var(--dark-accent);
+}

@@ -12,7 +12,7 @@ function showTime(){
     sec = sec < 10 ? '0' + sec : sec;
 
     let timeStr = hour + ":" + min + ":" + sec;
-    document.getElementById('section__time').innerHTML = timeStr;
+    document.getElementById('header__time').innerHTML = timeStr;
 }
 
 showTime();

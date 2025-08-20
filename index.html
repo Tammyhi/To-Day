@@ -5,18 +5,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>To-Day</title>
         <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
     <body>
         <header>
-            <h1 id="section__time">Yeehaw</h1>
+            <h1 id="header__time"></h1>
         </header>
         <main>
             <section class="section__list">
-
+                <div class="section__list__toggles">
+                    <p>To-Do</p>
+                    <p class="inactive">To-Celebrate</p>
+                </div>
+                <div class="section__list__item">
+                    <button class="section__list__btn --incomplete">
+                        <i class="fa-solid fa-circle"></i>
+                    </button>
+                    <p class="section__list__desc">Example</p>
+                </div>
+                <div class="section__list__item">
+                    <button class="section__list__btn --incomplete">
+                        <i class="fa-solid fa-circle"></i>
+                    </button>
+                    <p class="section__list__desc">Example</p>
+                </div>
             </section>
 
             <section class="section__add">
-
+                <textarea class="section__add__desc" placeholder="Task to add"></textarea>
             </section>
         </main>
         <footer>
