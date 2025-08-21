@@ -85,3 +85,14 @@ button {
 .ph, .ph-fill {
     color: var(--dark-text);
 }
+
+::placeholder {
+    font-style: italic;
+}
+
+#section__add__desc {
+    cursor: crosshair;
+    background-color: transparent;
+    border: none;
+    color: var(--dark-text);
+}
