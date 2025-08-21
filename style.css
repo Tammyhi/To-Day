@@ -76,6 +76,6 @@ button {
     opacity: 50%;
 }
 
-.fa-circle {
-    color: var(--dark-accent);
+.ph {
+    color: var(--dark-text);
 }
