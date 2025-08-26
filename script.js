@@ -1,4 +1,10 @@
-setInterval(showTime, 1000);
+document.addEventListener('DOMContentLoaded',() => {
+    setInterval(showTime, 1000);
+    showTime();
+    showDate();
+});
+
+
 
 function showTime(){
     let time = new Date;
@@ -88,5 +94,8 @@ function showDate(){
     let dateStr = dayOfWeek + " " + month + " " + dayOfMonth;
     document.getElementById('header__date').innerHTML = dateStr;
 }
-showTime();
-showDate();
+
+function taskFilterSwitch(){
+
+}
+

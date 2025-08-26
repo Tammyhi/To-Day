@@ -35,13 +35,6 @@
                     </button>
                     <p class="task-list__item__desc">To Do</p>
                 </div>
-
-                <div class="task-list__item">
-                    <button class="task-list__btn task-list__btn--complete">
-                        <i class="ph-fill ph-circle"></i>
-                    </button>
-                    <p class="task-list__item__desc">To Celebrate</p>
-                </div>
             </section>
 
             <section class="add-task-form">
@@ -49,6 +42,15 @@
                         <i class="ph ph-circle-dashed"></i>
                 </button>
                 <input type="text" id="add-task-form__desc" placeholder="Task to add" />
+            </section>
+            
+            <section class="task-list task-list--completed hidden">
+                 <div class="task-list__item task-list__item--completed">
+                    <button class="task-list__btn task-list__btn--completed">
+                        <i class="ph-fill ph-circle"></i>
+                    </button>
+                    <p class="task-list__item__desc">To Celebrate</p>
+                </div>
             </section>
         </main>
 

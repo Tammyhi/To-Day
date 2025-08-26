@@ -77,6 +77,9 @@ button {
     gap: clamp(4px, 5vw, 20px);
     padding: clamp(4px, 2vh, 16px);
     padding-left: 0;
+}
+
+.task-filter__btn {
     cursor: pointer;
 }
 
@@ -107,4 +110,8 @@ button {
     background-color: transparent;
     border: none;
     color: var(--dark-text);
+}
+
+.hidden {
+    visibility: hidden;
 }
