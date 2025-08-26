@@ -34,6 +34,7 @@ h1, h2, h3, h4, h5, h6 {
     --light-text: #2a2a2a;
 }
 
+
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: var(--dark-primary);
@@ -60,26 +61,31 @@ button {
     cursor: pointer;
 }
 
-.section__list {
+.task-list {
     display: flex;
     flex-direction: column;
     gap: clamp(2px, 1vh, 8px);
 }
 
-.section__list__item {
+.task-list__item {
     display: flex;
     gap: clamp(2px, 1vw, 8px);
 }
 
-.section__list__toggles {
+.task-filter {
     display: flex;
     gap: clamp(4px, 5vw, 20px);
     padding: clamp(4px, 2vh, 16px);
     padding-left: 0;
+    cursor: pointer;
 }
 
 .inactive {
     opacity: 50%;
+}
+
+.active {
+    text-decoration: underline;
 }
 
 .ph, .ph-fill {
@@ -90,7 +96,7 @@ button {
     font-style: italic;
 }
 
-#section__add__desc {
+#add-task-form__desc {
     cursor: crosshair;
     background-color: transparent;
     border: none;

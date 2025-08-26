@@ -16,44 +16,46 @@
       href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
     />
     </head>
+
     <body>
-        <header>
+        <header id="header">
             <h1 id="header__time"></h1>
             <h4 id="header__date"></h4>
         </header>
         <main>
-            <section class="section__list__toggles">
-                    <p>To-Do</p>
-                    <p class="inactive">To-Celebrate</p>
+            <section class="task-filter">
+                    <p class="active task-filter__btn task-filter__btn--incomplete">To-Do</p>
+                    <p class="inactive task-filter__btn task-filter__btn--complete">To-Celebrate</p>
             </section>
-            <section class="section__list">
-                <div class="section__list__item">
-                    <button class="section__list__btn --incomplete">
+
+            <section class="task-list">
+                <div class="task-list__item">
+                    <button class="task-list__btn task-list__btn--incomplete">
                         <i class="ph ph-circle"></i>
                     </button>
-                    <p class="section__list__desc">To Do</p>
+                    <p class="task-list__item__desc">To Do</p>
                 </div>
-                <div class="section__list__item">
-                    <button class="section__list__btn --incomplete">
-                        <i class="ph ph-circle-dashed"></i>
-                    </button>
-                    <p class="section__list__desc">To Add</p>
-                </div>
-                <div class="section__list__item">
-                    <button class="section__list__btn --incomplete">
+
+                <div class="task-list__item">
+                    <button class="task-list__btn task-list__btn--complete">
                         <i class="ph-fill ph-circle"></i>
                     </button>
-                    <p class="section__list__desc">To Celebrate</p>
+                    <p class="task-list__item__desc">To Celebrate</p>
                 </div>
             </section>
 
-            <section class="section__add">
-                <input type="text" id="section__add__desc" placeholder="Task to add" />
+            <section class="add-task-form">
+                <button class="add-task-form__btn">
+                        <i class="ph ph-circle-dashed"></i>
+                </button>
+                <input type="text" id="add-task-form__desc" placeholder="Task to add" />
             </section>
         </main>
+
         <footer>
             <p class="footer__p">Created by Tammy 2025</p>
         </footer>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/suncalc/1.9.0/suncalc.min.js" integrity="sha512-F6rjAEKNMtM0aODcc/MdnAvhGxn7FCbAkKJ5FKba/fnD3gnN+LBEok326WAMdOhKQKYNr+j/tJEuV1PKwIfhCA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="script.js"></script>
     </body>
