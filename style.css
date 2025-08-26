@@ -80,6 +80,12 @@ button {
     cursor: pointer;
 }
 
+.add-task-form {
+    display: flex;
+    gap: clamp(2px, 1vw, 8px);
+    padding-top: clamp(2px, 1vh, 8px);
+}
+
 .inactive {
     opacity: 50%;
 }
