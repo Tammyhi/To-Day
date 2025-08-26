@@ -61,7 +61,7 @@ button {
     cursor: pointer;
 }
 
-.task-list {
+#task-list, #task-list--completed {
     display: flex;
     flex-direction: column;
     gap: clamp(2px, 1vh, 8px);
@@ -72,7 +72,7 @@ button {
     gap: clamp(2px, 1vw, 8px);
 }
 
-.task-filter {
+#task-filter {
     display: flex;
     gap: clamp(4px, 5vw, 20px);
     padding: clamp(4px, 2vh, 16px);
@@ -83,7 +83,7 @@ button {
     cursor: pointer;
 }
 
-.add-task-form {
+#add-task-form {
     display: flex;
     gap: clamp(2px, 1vw, 8px);
     padding-top: clamp(2px, 1vh, 8px);
@@ -105,13 +105,13 @@ button {
     font-style: italic;
 }
 
-#add-task-form__desc {
+.add-task-form__desc {
     cursor: crosshair;
     background-color: transparent;
     border: none;
     color: var(--dark-text);
 }
 
-.hidden {
-    visibility: hidden;
+#task-list.hidden, #task-list--completed.hidden, #add-task-form.hidden {
+    display: none; /* visibility hidden is invisible but still takes up space*/
 }

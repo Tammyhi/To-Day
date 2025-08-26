@@ -2,6 +2,40 @@ document.addEventListener('DOMContentLoaded',() => {
     setInterval(showTime, 1000);
     showTime();
     showDate();
+
+    const taskFilter = document.getElementById('task-filter');
+    const taskList = document.getElementById('task-list');
+    const addTaskForm = document.getElementById('add-task-form');
+    const completedList = document.getElementById('task-list--completed');
+    const toDo = document.querySelector('.task-filter__btn--incomplete'); // querySelector returns just the first matching elem, no arr
+    const toCelebrate = document.querySelector('.task-filter__btn--complete');
+
+    taskFilter.addEventListener('click', (event) => {
+        const toDoDetected = event.target.closest('.task-filter__btn--incomplete');
+        const toCelebrateDetected = event.target.closest('.task-filter__btn--complete')
+        if (toCelebrateDetected){
+            if (toCelebrate.classList.contains('inactive')) {
+                toDo.classList.add('inactive');
+                taskList.classList.add('hidden');
+                addTaskForm.classList.add('hidden');
+
+                toCelebrate.classList.add('active');
+                toCelebrate.classList.remove('inactive');
+                completedList.classList.remove('hidden');
+            }
+        }
+        else if (toDoDetected) {
+            if(toDo.classList.contains('inactive')) {
+                toCelebrate.classList.add('inactive');
+                completedList.classList.add('hidden');
+
+                toDo.classList.add('active');
+                toDo.classList.remove('inactive');
+                taskList.classList.remove('hidden');
+                addTaskForm.classList.remove('hidden');
+            }
+        }
+    })
 });
 
 
@@ -93,9 +127,5 @@ function showDate(){
 
     let dateStr = dayOfWeek + " " + month + " " + dayOfMonth;
     document.getElementById('header__date').innerHTML = dateStr;
-}
-
-function taskFilterSwitch(){
-
 }
 

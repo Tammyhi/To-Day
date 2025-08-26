@@ -23,12 +23,12 @@
             <h4 id="header__date"></h4>
         </header>
         <main>
-            <section class="task-filter">
+            <section id="task-filter">
                     <p class="active task-filter__btn task-filter__btn--incomplete">To-Do</p>
                     <p class="inactive task-filter__btn task-filter__btn--complete">To-Celebrate</p>
             </section>
 
-            <section class="task-list">
+            <section id="task-list">
                 <div class="task-list__item">
                     <button class="task-list__btn task-list__btn--incomplete">
                         <i class="ph ph-circle"></i>
@@ -37,14 +37,14 @@
                 </div>
             </section>
 
-            <section class="add-task-form">
+            <section id="add-task-form">
                 <button class="add-task-form__btn">
                         <i class="ph ph-circle-dashed"></i>
                 </button>
                 <input type="text" id="add-task-form__desc" placeholder="Task to add" />
             </section>
             
-            <section class="task-list task-list--completed hidden">
+            <section class="hidden" id="task-list--completed">
                  <div class="task-list__item task-list__item--completed">
                     <button class="task-list__btn task-list__btn--completed">
                         <i class="ph-fill ph-circle"></i>
@@ -54,7 +54,7 @@
             </section>
         </main>
 
-        <footer>
+        <footer id="footer">
             <p class="footer__p">Created by Tammy 2025</p>
         </footer>
 
