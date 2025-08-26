@@ -9,6 +9,12 @@ document.addEventListener('DOMContentLoaded',() => {
     const completedList = document.getElementById('task-list--completed');
     const toDo = document.querySelector('.task-filter__btn--incomplete'); // querySelector returns just the first matching elem, no arr
     const toCelebrate = document.querySelector('.task-filter__btn--complete');
+    const initialData = {
+        tasksToDo: [],
+        tasksCompleted: [],
+        lastVisitDate: new Date().toLocaleDateString()
+    }
+    let appData = loadData() || initialData;
 
     taskFilter.addEventListener('click', (event) => {
         const toDoDetected = event.target.closest('.task-filter__btn--incomplete');
@@ -37,8 +43,6 @@ document.addEventListener('DOMContentLoaded',() => {
         }
     })
 });
-
-
 
 function showTime(){
     let time = new Date;
@@ -129,3 +133,18 @@ function showDate(){
     document.getElementById('header__date').innerHTML = dateStr;
 }
 
+function saveData(){
+
+}
+
+function loadData(){
+    
+}
+/* In local storage
+    During the day store the current tasks in the completed list and incomplete list, git sta
+    create object for each list, counter.
+    clear everything in object, add stuff in object, update
+
+    So at midnight
+    Delete all elements in completed list, incomplete list
+    */
