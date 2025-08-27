@@ -42,6 +42,8 @@ document.addEventListener('DOMContentLoaded',() => {
             }
         }
     })
+
+
 });
 
 function showTime(){
@@ -140,11 +142,13 @@ function saveData(){
 function loadData(){
     
 }
+
+function midnightReset() {
+    localStorage.clear();
+}
+
 /* In local storage
     During the day store the current tasks in the completed list and incomplete list, git sta
     create object for each list, counter.
-    clear everything in object, add stuff in object, update
-
-    So at midnight
-    Delete all elements in completed list, incomplete list
+    when complete task, incomplete task, add task, edit task
     */
