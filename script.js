@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded',() => {
     const taskFilter = document.getElementById('task-filter');
     const taskList = document.getElementById('task-list');
     const addTaskForm = document.getElementById('add-task-form');
+    const addTaskDesc = document.querySelector('.add-task-form__desc');
     const completedList = document.getElementById('task-list--completed');
     const toDo = document.querySelector('.task-filter__btn--incomplete'); // querySelector returns just the first matching elem, no arr
     const toCelebrate = document.querySelector('.task-filter__btn--complete');
@@ -43,8 +44,34 @@ document.addEventListener('DOMContentLoaded',() => {
         }
     })
 
-
+    addTaskForm.addEventListener('keydown', (event) =>{
+        if(event.key === "Enter"){
+            const newTask = createTaskElement(addTaskDesc.value);
+            taskList.appendChild(newTask);
+            addTaskDesc.value = '';
+        }
+    })
 });
+
+function createTaskElement(desc){
+    const taskEl = document.createElement('div');
+    taskEl.classList.add('task-list__item');
+
+    const taskBtn = document.createElement('button');
+    taskBtn.classList.add('task-list__btn', 'task-list__btn--incomplete');
+
+    const taskBtnIcon = document.createElement('i');
+    taskBtnIcon.classList.add('ph','ph-circle');
+
+    const taskDesc = document.createElement('p');
+    taskDesc.classList.add('task-list__item__desc');
+    taskDesc.innerHTML = desc;
+
+    taskBtn.appendChild(taskBtnIcon);
+    taskEl.appendChild(taskBtn);
+    taskEl.appendChild(taskDesc);
+    return taskEl;
+}
 
 function showTime(){
     let time = new Date;
