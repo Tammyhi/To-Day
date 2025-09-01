@@ -59,6 +59,7 @@ button {
     background-color: transparent;
     border: none;
     cursor: pointer;
+    color: var(--dark-text);
 }
 
 #task-list, #task-list--completed {
@@ -77,10 +78,6 @@ button {
     gap: clamp(4px, 5vw, 20px);
     padding: clamp(4px, 2vh, 16px);
     padding-left: 0;
-}
-
-.task-filter__btn {
-    cursor: pointer;
 }
 
 #add-task-form {
@@ -106,7 +103,7 @@ button {
 }
 
 .add-task-form__desc {
-    cursor: crosshair;
+    cursor: cursor;
     background-color: transparent;
     border: none;
     color: var(--dark-text);

@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded',() => {
     const taskFilter = document.getElementById('task-filter');
     const taskList = document.getElementById('task-list');
     const addTaskForm = document.getElementById('add-task-form');
+    const addTaskMobileBtn = document.querySelector('.add-task-form__btn--mobile');
     const addTaskDesc = document.querySelector('.add-task-form__desc');
     const completedList = document.getElementById('task-list--completed');
     const toDo = document.querySelector('.task-filter__btn--incomplete'); // querySelector returns just the first matching elem, no arr
@@ -51,6 +52,13 @@ document.addEventListener('DOMContentLoaded',() => {
             addTaskDesc.value = '';
         }
     })
+
+    addTaskMobileBtn.addEventListener('click', () => {
+        const newTask = createTaskElement(addTaskDesc.value);
+        taskList.appendChild(newTask);
+        addTaskDesc.value = '';
+    })
+
 });
 
 function createTaskElement(desc){
