@@ -27,12 +27,30 @@ document.addEventListener('DOMContentLoaded',() => {
         if (taskListItem) {
             taskListItem.remove();
             completedList.appendChild(taskListItem);
+            taskListItem.classList.remove('task-list__item--incomplete');
+            taskListItem.classList.add('task-list__item--completed');
             const taskListBtn = taskListItem.querySelector('.task-list__btn--incomplete');
             taskListBtn.classList.remove('task-list__btn--incomplete');
             taskListBtn.classList.add('task-list__btn--completed');
             const taskListBtnIcon = taskListBtn.querySelector('.task-list__btn__icon--incomplete');
             taskListBtnIcon.classList.remove('task-list__btn__icon--incomplete','ph');
             taskListBtnIcon.classList.add('task-list__btn__icon--completed','ph-fill');
+        }
+    });
+
+    completedList.addEventListener('click',(event) =>{
+        const completedListItem = event.target.closest('.task-list__item--completed');
+        if (completedListItem) {
+            completedListItem.remove();
+            taskList.appendChild(completedListItem);
+            completedListItem.classList.remove('task-list__item--completed');
+            completedListItem.classList.add('task-list__item--incomplete');
+            const completedListBtn = completedListItem.querySelector('.task-list__btn--completed');
+            completedListBtn.classList.remove('task-list__btn--completed');
+            completedListBtn.classList.add('task-list__btn--incomplete');
+            const completedListBtnIcon = completedListBtn.querySelector('.task-list__btn__icon--completed');
+            completedListBtnIcon.classList.remove('task-list__btn__icon--completed','ph-fill');
+            completedListBtnIcon.classList.add('task-list__btn__icon--incomplete','ph');
         }
     });
 
