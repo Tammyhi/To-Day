@@ -4,19 +4,37 @@ document.addEventListener('DOMContentLoaded',() => {
     showDate();
 
     const taskFilter = document.getElementById('task-filter');
+    const toDo = document.querySelector('.task-filter__btn--incomplete'); // querySelector returns just the first matching elem, no arr
+    const toCelebrate = document.querySelector('.task-filter__btn--complete');
+
     const taskList = document.getElementById('task-list');
+
+    const completedList = document.getElementById('task-list--completed');
+
     const addTaskForm = document.getElementById('add-task-form');
     const addTaskMobileBtn = document.querySelector('.add-task-form__btn--mobile');
     const addTaskDesc = document.querySelector('.add-task-form__desc');
-    const completedList = document.getElementById('task-list--completed');
-    const toDo = document.querySelector('.task-filter__btn--incomplete'); // querySelector returns just the first matching elem, no arr
-    const toCelebrate = document.querySelector('.task-filter__btn--complete');
+    
     const initialData = {
         tasksToDo: [],
         tasksCompleted: [],
         lastVisitDate: new Date().toLocaleDateString()
     }
     let appData = loadData() || initialData;
+
+    taskList.addEventListener('click',(event) =>{
+        const taskListItem = event.target.closest('.task-list__item--incomplete');
+        if (taskListItem) {
+            taskListItem.remove();
+            completedList.appendChild(taskListItem);
+            const taskListBtn = taskListItem.querySelector('.task-list__btn--incomplete');
+            taskListBtn.classList.remove('task-list__btn--incomplete');
+            taskListBtn.classList.add('task-list__btn--completed');
+            const taskListBtnIcon = taskListBtn.querySelector('.task-list__btn__icon--incomplete');
+            taskListBtnIcon.classList.remove('task-list__btn__icon--incomplete','ph');
+            taskListBtnIcon.classList.add('task-list__btn__icon--completed','ph-fill');
+        }
+    });
 
     taskFilter.addEventListener('click', (event) => {
         const toDoDetected = event.target.closest('.task-filter__btn--incomplete');
@@ -59,17 +77,18 @@ document.addEventListener('DOMContentLoaded',() => {
         addTaskDesc.value = '';
     })
 
+
 });
 
 function createTaskElement(desc){
     const taskEl = document.createElement('div');
-    taskEl.classList.add('task-list__item');
+    taskEl.classList.add('task-list__item','task-list__item--incomplete');
 
     const taskBtn = document.createElement('button');
     taskBtn.classList.add('task-list__btn', 'task-list__btn--incomplete');
 
     const taskBtnIcon = document.createElement('i');
-    taskBtnIcon.classList.add('ph','ph-circle');
+    taskBtnIcon.classList.add('ph','ph-circle', 'task-list__btn__icon','task-list__btn__icon--incomplete');
 
     const taskDesc = document.createElement('p');
     taskDesc.classList.add('task-list__item__desc');
