@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded',() => {
+    localStorage.setItem("name", "Tammy");
+    console.log(localStorage.getItem("name"));
+    localStorage.setItem("name2", "Sean");
+    console.log(localStorage.getItem("name2"));
+    localStorage.removeItem("name2");
+    console.log(localStorage.getItem("name2"));
+    
     setInterval(showTime, 1000);
     showTime();
     showDate();
@@ -223,4 +230,6 @@ function midnightReset() {
     During the day store the current tasks in the completed list and incomplete list, git sta
     create object for each list, counter.
     when complete task, incomplete task, add task, edit task
+
+    localStorage.setitem(keystr, valstr)
     */
