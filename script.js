@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded',() => {
+    let taskCounter = localStorage.getItem("taskCounterItem") || 0;
+
+    if (localStorage.getItem("taskCounterItem") === null){
+        localStorage.setItem("taskCounterItem", 0);
+    }
+
     localStorage.setItem("name", "Tammy");
     console.log(localStorage.getItem("name"));
     localStorage.setItem("name2", "Sean");
@@ -6,6 +12,7 @@ document.addEventListener('DOMContentLoaded',() => {
     localStorage.removeItem("name2");
     console.log(localStorage.getItem("name2"));
     
+    // update clock
     setInterval(showTime, 1000);
     showTime();
     showDate();
@@ -29,6 +36,7 @@ document.addEventListener('DOMContentLoaded',() => {
     }
     let appData = loadData() || initialData;
 
+    // make incomplete task complete
     taskList.addEventListener('click',(event) =>{
         const taskListItem = event.target.closest('.task-list__item--incomplete');
         if (taskListItem) {
@@ -45,6 +53,7 @@ document.addEventListener('DOMContentLoaded',() => {
         }
     });
 
+    // make complete task incomplete
     completedList.addEventListener('click',(event) =>{
         const completedListItem = event.target.closest('.task-list__item--completed');
         if (completedListItem) {
@@ -61,6 +70,7 @@ document.addEventListener('DOMContentLoaded',() => {
         }
     });
 
+    // switch between toDo and toCelebrate lists view
     taskFilter.addEventListener('click', (event) => {
         const toDoDetected = event.target.closest('.task-filter__btn--incomplete');
         const toCelebrateDetected = event.target.closest('.task-filter__btn--complete')
@@ -88,6 +98,7 @@ document.addEventListener('DOMContentLoaded',() => {
         }
     })
 
+    // Add new task with enter key or clicking on add
     addTaskForm.addEventListener('keydown', (event) =>{
         if(event.key === "Enter"){
             const newTask = createTaskElement(addTaskDesc.value);
@@ -105,6 +116,7 @@ document.addEventListener('DOMContentLoaded',() => {
 
 });
 
+// return created task element 
 function createTaskElement(desc){
     const taskEl = document.createElement('div');
     taskEl.classList.add('task-list__item','task-list__item--incomplete');
