@@ -1,17 +1,13 @@
 document.addEventListener('DOMContentLoaded',() => {
-    let taskCounter = localStorage.getItem("taskCounterItem") || 0;
-
-    if (localStorage.getItem("taskCounterItem") === null){
-        localStorage.setItem("taskCounterItem", 0);
-    }
-
-    localStorage.setItem("name", "Tammy");
-    console.log(localStorage.getItem("name"));
-    localStorage.setItem("name2", "Sean");
-    console.log(localStorage.getItem("name2"));
-    localStorage.removeItem("name2");
-    console.log(localStorage.getItem("name2"));
+    let tasks = [];
     
+    const initialData = {
+        tasksToDo: [],
+        tasksCompleted: [],
+        lastVisitDate: new Date().toLocaleDateString()
+    }
+    let appData = loadData() || initialData;
+
     // update clock
     setInterval(showTime, 1000);
     showTime();
@@ -28,13 +24,6 @@ document.addEventListener('DOMContentLoaded',() => {
     const addTaskForm = document.getElementById('add-task-form');
     const addTaskMobileBtn = document.querySelector('.add-task-form__btn--mobile');
     const addTaskDesc = document.querySelector('.add-task-form__desc');
-    
-    const initialData = {
-        tasksToDo: [],
-        tasksCompleted: [],
-        lastVisitDate: new Date().toLocaleDateString()
-    }
-    let appData = loadData() || initialData;
 
     // make incomplete task complete
     taskList.addEventListener('click',(event) =>{
@@ -227,11 +216,18 @@ function showDate(){
 }
 
 function saveData(){
-
+    localStorage.setItem("taskItems", JSON.stringify(tasks));
 }
 
 function loadData(){
-    
+    const savedTasks = localStorage.getItem("taskItems");
+    if (savedTasks){
+        tasks = JSON.parse(savedTasks);
+        renderTasks();
+    }
+    else{
+        localStorage.setItem("taskItems","");
+    }
 }
 
 function midnightReset() {
