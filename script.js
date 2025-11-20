@@ -1,11 +1,5 @@
 document.addEventListener('DOMContentLoaded',() => {
     let tasks = [];
-    let taskCounter = 0;
-
-    // update clock
-    setInterval(showTime, 1000);
-    showTime();
-    showDate();
 
     const taskFilter = document.getElementById('task-filter');
     const toDo = document.querySelector('.task-filter__btn--incomplete'); // querySelector returns just the first matching elem, no arr
@@ -112,7 +106,12 @@ document.addEventListener('DOMContentLoaded',() => {
             }
     })
 
+    // update clock
+    setInterval(showTime, 1000);
+    showTime();
+    showDate();
 
+    loadData(tasks);
 });
 
 // return created task element 
@@ -226,22 +225,30 @@ function showDate(){
 }
 
 // call after tasks is updated (add task, del task, edit task desc, edit task status, etc.)
+// later alter so can save color scheme n other stuff
 function saveData(dataToSave){
     localStorage.setItem("taskItems", JSON.stringify(dataToSave));
 }
 
-function loadData(){
+function loadData(tasksEl){
     const savedTasks = localStorage.getItem("taskItems");
     if (savedTasks){
-        tasks = JSON.parse(savedTasks);
-        renderTasks();
+        tasksEl = JSON.parse(savedTasks);
+        renderTasks(savedTasks);
     }
     else{
         localStorage.setItem("taskItems","");
     }
 }
 
-function midnightReset() {
+function renderTasks(tasksToRender){
+    const renderToDo = tasksToRender.filter((task) => task.status === incomplete);
+    const renderToCelebrate = tasksToRender.filter((task) => task.status === completed);
+
+    document.getElementById("task-list")
+}
+
+function midnightReset(){
     localStorage.clear();
 }
 
