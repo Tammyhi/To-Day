@@ -1,12 +1,6 @@
 document.addEventListener('DOMContentLoaded',() => {
     let tasks = [];
-    
-    const initialData = {
-        tasksToDo: [],
-        tasksCompleted: [],
-        lastVisitDate: new Date().toLocaleDateString()
-    }
-    let appData = loadData() || initialData;
+    let taskCounter = 0;
 
     // update clock
     setInterval(showTime, 1000);
@@ -90,16 +84,32 @@ document.addEventListener('DOMContentLoaded',() => {
     // Add new task with enter key or clicking on add
     addTaskForm.addEventListener('keydown', (event) =>{
         if(event.key === "Enter"){
-            const newTask = createTaskElement(addTaskDesc.value);
-            taskList.appendChild(newTask);
-            addTaskDesc.value = '';
+            if (addTaskDesc.value !== ''){
+                const newTask = createTaskElement(addTaskDesc.value);
+                taskList.appendChild(newTask);
+                tasks.push({
+                    id: taskCounter++,
+                    desc: addTaskDesc.value,
+                    status: "incomplete",
+                });
+                saveData(tasks);
+                addTaskDesc.value = '';
+            }
         }
     })
 
     addTaskMobileBtn.addEventListener('click', () => {
-        const newTask = createTaskElement(addTaskDesc.value);
-        taskList.appendChild(newTask);
-        addTaskDesc.value = '';
+        if (addTaskDesc.value !== ''){
+                const newTask = createTaskElement(addTaskDesc.value);
+                taskList.appendChild(newTask);
+                tasks.push({
+                    id: taskCounter++,
+                    desc: addTaskDesc.value,
+                    status: "incomplete",
+                });
+                saveData(tasks);
+                addTaskDesc.value = '';
+            }
     })
 
 
@@ -215,8 +225,9 @@ function showDate(){
     document.getElementById('header__date').innerHTML = dateStr;
 }
 
-function saveData(){
-    localStorage.setItem("taskItems", JSON.stringify(tasks));
+// call after tasks is updated (add task, del task, edit task desc, edit task status, etc.)
+function saveData(dataToSave){
+    localStorage.setItem("taskItems", JSON.stringify(dataToSave));
 }
 
 function loadData(){
