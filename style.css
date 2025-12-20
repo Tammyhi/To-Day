@@ -65,7 +65,7 @@ button {
 #task-list, #task-list--completed {
     display: flex;
     flex-direction: column;
-    gap: clamp(2px, 1vh, 8px);
+    gap: clamp(4px, 2vh, 16px);
 }
 
 .task-list__item {
@@ -87,7 +87,6 @@ button {
 #add-task-form {
     display: flex;
     gap: clamp(2px, 1vw, 8px);
-    padding-top: clamp(2px, 1vh, 8px);
 }
 
 .inactive {
