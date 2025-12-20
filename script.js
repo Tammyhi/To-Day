@@ -99,14 +99,14 @@ document.addEventListener('DOMContentLoaded',() => {
     // Add new task with enter key or clicking on add
     addTaskForm.addEventListener('keydown', (event) =>{
         if(event.key === "Enter"){
-            if (addTaskDesc.value !== ''){
+            if (addTaskDesc.value.trim() !== ''){
                 const newTask = createTaskElement(addTaskDesc.value);
                 taskList.appendChild(newTask);
-                tasks.push({
-                    id: taskCounter++,
-                    desc: addTaskDesc.value,
-                    status: "incomplete",
-                });
+                // tasks.push({
+                //     id: taskCounter++,
+                //     desc: addTaskDesc.value,
+                //     status: "incomplete",
+                // });
                 saveData(tasks);
                 addTaskDesc.value = '';
             }
@@ -114,14 +114,14 @@ document.addEventListener('DOMContentLoaded',() => {
     })
 
     addTaskMobileBtn.addEventListener('click', () => {
-        if (addTaskDesc.value !== ''){
+        if (addTaskDesc.value.trim() !== ''){
                 const newTask = createTaskElement(addTaskDesc.value);
                 taskList.appendChild(newTask);
-                tasks.push({
-                    id: taskCounter++,
-                    desc: addTaskDesc.value,
-                    status: "incomplete",
-                });
+                // tasks.push({
+                //     id: taskCounter++,
+                //     desc: addTaskDesc.value,
+                //     status: "incomplete",
+                // });
                 saveData(tasks);
                 addTaskDesc.value = '';
             }
@@ -148,6 +148,8 @@ function createTaskElement(desc){
 
     const taskDesc = document.createElement('p');
     taskDesc.classList.add('task-list__item__desc');
+    taskDesc.setAttribute("contenteditable", "true");
+    taskDesc.setAttribute("spellcheck", "false");
     taskDesc.innerHTML = desc;
 
     taskBtn.appendChild(taskBtnIcon);
