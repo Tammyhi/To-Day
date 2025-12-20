@@ -30,6 +30,14 @@ document.addEventListener('DOMContentLoaded',() => {
                 taskListBtnIcon.classList.add('task-list__btn__icon--completed','ph-fill');
             }
         }
+        else if(target.closest('.task-list__item__desc')){
+            let newDesc = target.closest('.task-list__item__desc');
+            newDesc.addEventListener('keydown', (event) => {
+                if(event.key === 'Enter'){
+                    event.preventDefault();
+                }
+            })
+        }
     });
 
     // make complete task incomplete
@@ -49,6 +57,14 @@ document.addEventListener('DOMContentLoaded',() => {
                 completedListBtnIcon.classList.remove('task-list__btn__icon--completed','ph-fill');
                 completedListBtnIcon.classList.add('task-list__btn__icon--incomplete','ph');
             }
+        }
+        else if(target.closest('.task-list__item__desc')){
+            let newDesc = target.closest('.task-list__item__desc');
+            newDesc.addEventListener('keydown', (event) => {
+                if(event.key === 'Enter'){
+                    event.preventDefault();
+                }
+            })
         }
     });
 
