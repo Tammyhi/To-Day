@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded',() => {
     const toCelebrate = document.querySelector('.task-filter__btn--complete');
 
     const taskList = document.getElementById('task-list');
-
     const completedList = document.getElementById('task-list--completed');
 
     const addTaskForm = document.getElementById('add-task-form');
@@ -15,35 +14,41 @@ document.addEventListener('DOMContentLoaded',() => {
 
     // make incomplete task complete
     taskList.addEventListener('click',(event) =>{
-        const taskListItem = event.target.closest('.task-list__item--incomplete');
-        if (taskListItem) {
-            taskListItem.remove();
-            completedList.appendChild(taskListItem);
-            taskListItem.classList.remove('task-list__item--incomplete');
-            taskListItem.classList.add('task-list__item--completed');
-            const taskListBtn = taskListItem.querySelector('.task-list__btn--incomplete');
-            taskListBtn.classList.remove('task-list__btn--incomplete');
-            taskListBtn.classList.add('task-list__btn--completed');
-            const taskListBtnIcon = taskListBtn.querySelector('.task-list__btn__icon--incomplete');
-            taskListBtnIcon.classList.remove('task-list__btn__icon--incomplete','ph');
-            taskListBtnIcon.classList.add('task-list__btn__icon--completed','ph-fill');
+        const target = event.target;
+        if(target.closest('.task-list__btn__icon--incomplete')){
+            const taskListItem = event.target.closest('.task-list__item--incomplete');
+            if (taskListItem) {
+                taskListItem.remove();
+                completedList.appendChild(taskListItem);
+                taskListItem.classList.remove('task-list__item--incomplete');
+                taskListItem.classList.add('task-list__item--completed');
+                const taskListBtn = taskListItem.querySelector('.task-list__btn--incomplete');
+                taskListBtn.classList.remove('task-list__btn--incomplete');
+                taskListBtn.classList.add('task-list__btn--completed');
+                const taskListBtnIcon = taskListBtn.querySelector('.task-list__btn__icon--incomplete');
+                taskListBtnIcon.classList.remove('task-list__btn__icon--incomplete','ph');
+                taskListBtnIcon.classList.add('task-list__btn__icon--completed','ph-fill');
+            }
         }
     });
 
     // make complete task incomplete
     completedList.addEventListener('click',(event) =>{
-        const completedListItem = event.target.closest('.task-list__item--completed');
-        if (completedListItem) {
-            completedListItem.remove();
-            taskList.appendChild(completedListItem);
-            completedListItem.classList.remove('task-list__item--completed');
-            completedListItem.classList.add('task-list__item--incomplete');
-            const completedListBtn = completedListItem.querySelector('.task-list__btn--completed');
-            completedListBtn.classList.remove('task-list__btn--completed');
-            completedListBtn.classList.add('task-list__btn--incomplete');
-            const completedListBtnIcon = completedListBtn.querySelector('.task-list__btn__icon--completed');
-            completedListBtnIcon.classList.remove('task-list__btn__icon--completed','ph-fill');
-            completedListBtnIcon.classList.add('task-list__btn__icon--incomplete','ph');
+        const target = event.target;
+        if(target.closest('.task-list__btn__icon--completed')){
+            const completedListItem = event.target.closest('.task-list__item--completed');
+            if (completedListItem) {
+                completedListItem.remove();
+                taskList.appendChild(completedListItem);
+                completedListItem.classList.remove('task-list__item--completed');
+                completedListItem.classList.add('task-list__item--incomplete');
+                const completedListBtn = completedListItem.querySelector('.task-list__btn--completed');
+                completedListBtn.classList.remove('task-list__btn--completed');
+                completedListBtn.classList.add('task-list__btn--incomplete');
+                const completedListBtnIcon = completedListBtn.querySelector('.task-list__btn__icon--completed');
+                completedListBtnIcon.classList.remove('task-list__btn__icon--completed','ph-fill');
+                completedListBtnIcon.classList.add('task-list__btn__icon--incomplete','ph');
+            }
         }
     });
 

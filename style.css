@@ -73,6 +73,10 @@ button {
     gap: clamp(2px, 1vw, 8px);
 }
 
+.task-filter__btn {
+    cursor: pointer;
+}
+
 #task-filter {
     display: flex;
     gap: clamp(4px, 5vw, 20px);
@@ -112,3 +116,4 @@ button {
 #task-list.hidden, #task-list--completed.hidden, #add-task-form.hidden {
     display: none; /* visibility hidden is invisible but still takes up space*/
 }
+
