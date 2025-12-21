@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded',() => {
                 taskListBtnIcon.classList.remove('task-list__btn__icon--incomplete','ph');
                 taskListBtnIcon.classList.add('task-list__btn__icon--completed','ph-fill');
                 console.log(tasks[taskListItem.id]);
-                tasks[taskListItem.id].status = "complete";
+                tasks[taskListItem.id].status = "completed";
                 localStorage.setItem(taskListItem.id, JSON.stringify(tasks[taskListItem.id]));
             }
         }
@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded',() => {
                 tasks.push(taskEl);
                 let elStatus = taskEl.status;
                 let elDesc = taskEl.desc;
-                let newEl = createTaskElement(elStatus, elDesc);
+                let newEl = createTaskElement(elDesc, elStatus);
                 if(elStatus === "incomplete"){
                     taskList.appendChild(newEl);
                 }
@@ -280,6 +280,6 @@ document.addEventListener('DOMContentLoaded',() => {
     setInterval(showTime, 1000);
     showTime();
     showDate();
-    localStorage.clear();
+    //localStorage.clear();
     loadData();
 });
