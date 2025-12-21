@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded',() => {
                 const taskListBtnIcon = taskListBtn.querySelector('.task-list__btn__icon--incomplete');
                 taskListBtnIcon.classList.remove('task-list__btn__icon--incomplete','ph');
                 taskListBtnIcon.classList.add('task-list__btn__icon--completed','ph-fill');
+                console.log(tasks[taskListItem.id]);
                 tasks[taskListItem.id].status = "complete";
                 localStorage.setItem(taskListItem.id, JSON.stringify(tasks[taskListItem.id]));
             }
@@ -64,7 +65,7 @@ document.addEventListener('DOMContentLoaded',() => {
                 completedListBtnIcon.classList.remove('task-list__btn__icon--completed','ph-fill');
                 completedListBtnIcon.classList.add('task-list__btn__icon--incomplete','ph');
                 tasks[completedListItem.id].status = "incomplete";
-                localStorage.setItem(completedListItem.id, tasks[completedListItem.id]);
+                localStorage.setItem(completedListItem.id, JSON.stringify(tasks[completedListItem.id]));
             }
         }
         else if(target.closest('.task-list__item__desc')){
@@ -113,7 +114,7 @@ document.addEventListener('DOMContentLoaded',() => {
     addTaskForm.addEventListener('keydown', (event) =>{
         if(event.key === "Enter"){
             if (addTaskDesc.value.trim() !== ''){
-                const newTask = createTaskElement(addTaskDesc.value);
+                const newTask = createTaskElement(addTaskDesc.value, "incomplete");
                 taskList.appendChild(newTask);
                 tasks.push({
                      desc: addTaskDesc.value,
@@ -127,7 +128,7 @@ document.addEventListener('DOMContentLoaded',() => {
 
     addTaskMobileBtn.addEventListener('click', () => {
         if (addTaskDesc.value.trim() !== ''){
-                const newTask = createTaskElement(addTaskDesc.value);
+                const newTask = createTaskElement(addTaskDesc.value, "incomplete");
                 taskList.appendChild(newTask);
                 tasks.push({
                      desc: addTaskDesc.value,
