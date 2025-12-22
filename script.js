@@ -172,11 +172,21 @@ document.addEventListener('DOMContentLoaded',() => {
         let min = time.getMinutes();
         let sec = time.getSeconds();
 
+        if(hour === 0 && min === 0 && sec === 0){
+            localStorage.clear();
+            location.reload();
+        }
         min = min < 10 ? '0' + min : min;
         sec = sec < 10 ? '0' + sec : sec;
 
         let timeStr = hour + ":" + min + ":" + sec;
         document.getElementById('header__time').innerHTML = timeStr;
+
+        console.log(hour);
+        console.log(min);
+        console.log(sec);
+        console.log("----");
+        
         // Add thing that when it hits midnight call showDate again
     }
 
@@ -272,14 +282,9 @@ document.addEventListener('DOMContentLoaded',() => {
         }
     }
 
-    function midnightReset(){
-        localStorage.clear();
-    }
-
     // update clock
     setInterval(showTime, 1000);
     showTime();
     showDate();
-    //localStorage.clear();
     loadData();
 });
