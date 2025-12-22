@@ -1,5 +1,10 @@
 document.addEventListener('DOMContentLoaded',() => {
     let tasks = [];
+    let settings = {
+        resetHour: 0,
+        resetMin: 0,
+        timeTillReset: 0
+    };
 
     const taskFilter = document.getElementById('task-filter');
     const toDo = document.querySelector('.task-filter__btn--incomplete'); // querySelector returns just the first matching elem, no arr
@@ -202,8 +207,12 @@ document.addEventListener('DOMContentLoaded',() => {
         let min = time.getMinutes();
         let sec = time.getSeconds();
 
-        if(hour === 0 && min === 0 && sec === 0){
-            localStorage.clear();
+        console.log(time.getTime());
+        if(time.getTime() > settings.timeTillReset){
+            calcReset();
+            localStorage.removeItem('tasks');
+            tasks = [];
+            saveData();
             location.reload();
         }
         min = min < 10 ? '0' + min : min;
@@ -286,12 +295,24 @@ document.addEventListener('DOMContentLoaded',() => {
         document.getElementById('header__date').innerHTML = dateStr;
     }
 
+    function calcReset(){
+        const now = new Date();
+        const resetTime = new Date();
+
+        resetTime.setHours(settings.resetHour, settings.resetMin, 0, 0);
+        if (now > resetTime){
+            resetTime.setDate(resetTime.getDate() + 1);
+        }
+        settings.timeTillReset = resetTime.getTime();
+    }
+
     function saveData(){
         localStorage.setItem("tasks", JSON.stringify(tasks));
+        localStorage.setItem("settings", JSON.stringify(settings));
     }
 
     function loadData(){
-        if (localStorage.length > 0){
+        if (localStorage.getItem('tasks')){
             let savedList = JSON.parse(localStorage.getItem('tasks'));
             savedList.forEach(taskEl => {
                 tasks.push(taskEl);
@@ -307,11 +328,22 @@ document.addEventListener('DOMContentLoaded',() => {
                 }
             })
         }
+        else{
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        if (localStorage.getItem('settings')){
+            settings = JSON.parse(localStorage.getItem('settings'));
+        }
+        else {
+            localStorage.setItem('settings', JSON.stringify(settings));
+        }
     }
 
-    // update clock
     setInterval(showTime, 1000);
+
+    loadData();
+
     showTime();
     showDate();
-    loadData();
 });

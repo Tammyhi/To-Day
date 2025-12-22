@@ -16,13 +16,13 @@ Solution: Create a to do list that resets in 24 hours so I can't overplan and wi
 - Edit tasks
 - Remove tasks
 - Localstorage
+- Tasks get cleared at midnight
 - Two lists for completed and incomplete tasks
   
 ## 🚃 To-Do
 <details>
   <summary>Click to expand</summary>
   
-  - Err does not actually reset at midnight if the page is not running at midnight
   - Make everything bigger. Not visible enough and too small.
   - Add feature to randomly choose a task to pin? For user to focus on doing rn
   - Add re-occuring tasks that are populated automatically after reset
