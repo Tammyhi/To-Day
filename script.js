@@ -207,7 +207,6 @@ document.addEventListener('DOMContentLoaded',() => {
         let min = time.getMinutes();
         let sec = time.getSeconds();
 
-        console.log(time.getTime());
         if(time.getTime() > settings.timeTillReset){
             calcReset();
             localStorage.removeItem('tasks');

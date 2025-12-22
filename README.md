@@ -27,12 +27,24 @@ Solution: Create a to do list that resets in 24 hours so I can't overplan and wi
   - Add feature to randomly choose a task to pin? For user to focus on doing rn
   - Add re-occuring tasks that are populated automatically after reset
   - Add more customizability
+    - UI for settings
     - Light mode
     - Customize reset time
+  - Copy markdown version of what completed + what didn't to copy and share with friends
+  - Add priorities list
+    - Edit priority name
+    - Change order of priority
+  - Add some gradient line thing at the top to show passing of the day
+  - Add ability to move tasks around (change order)
 </details>
 
 ## 📝 Self-Notes
+<details>
+  <summary>Click to expand</summary>
+
 - Verbose naming conventions are confusing and not easy to read. Maybe I'll refactor it later?
 - Even if I say I will not implement this feature, I should design things with scalability in mind. Less refactoring.
 - localStorage was easier to learn than expected. Just takes a bit of time to find stuff in MDN Documentation
 - Need to learn UI/web design so I can think of designs to make besides the bare skeleton LOL
+</details>
+
