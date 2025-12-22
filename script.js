@@ -28,9 +28,9 @@ document.addEventListener('DOMContentLoaded',() => {
                 const taskListBtnIcon = taskListBtn.querySelector('.task-list__btn__icon--incomplete');
                 taskListBtnIcon.classList.remove('task-list__btn__icon--incomplete','ph');
                 taskListBtnIcon.classList.add('task-list__btn__icon--completed','ph-fill');
-                console.log(tasks[taskListItem.id]);
-                tasks[taskListItem.id].status = "completed";
-                localStorage.setItem(taskListItem.id, JSON.stringify(tasks[taskListItem.id]));
+                let task = tasks.find(task => task.id === taskListItem.id);
+                task.status = "completed";
+                saveData();
             }
         }
         else if(target.closest('.task-list__item__desc')){
@@ -42,9 +42,16 @@ document.addEventListener('DOMContentLoaded',() => {
                 }
             })
             newDesc.addEventListener('blur', (event) => {
-                tasks[newDesc.parentElement.id].desc = newDesc.innerHTML;
-                localStorage.setItem(newDesc.parentElement.id, JSON.stringify(tasks[newDesc.parentElement.id]));
+                let task = tasks.find(task => task.id === newDesc.parentElement.id);
+                task.desc = newDesc.innerHTML;
+                saveData();
             })
+        }
+        else if (target.closest('.task-list__btn__icon--delete')){
+            const taskListItem = event.target.closest('.task-list__item--incomplete');
+            taskListItem.remove();
+            tasks = tasks.filter(task => task.id !== taskListItem.id);
+            saveData();
         }
     });
 
@@ -64,8 +71,9 @@ document.addEventListener('DOMContentLoaded',() => {
                 const completedListBtnIcon = completedListBtn.querySelector('.task-list__btn__icon--completed');
                 completedListBtnIcon.classList.remove('task-list__btn__icon--completed','ph-fill');
                 completedListBtnIcon.classList.add('task-list__btn__icon--incomplete','ph');
-                tasks[completedListItem.id].status = "incomplete";
-                localStorage.setItem(completedListItem.id, JSON.stringify(tasks[completedListItem.id]));
+                let task = tasks.find(task => task.id === completedListItem.id);
+                task.status = "incomplete";
+                saveData();
             }
         }
         else if(target.closest('.task-list__item__desc')){
@@ -76,9 +84,16 @@ document.addEventListener('DOMContentLoaded',() => {
                 }
             })
             newDesc.addEventListener('blur', (event) => {
-                tasks[newDesc.parentElement.id].desc = newDesc.innerHTML;
-                localStorage.setItem(newDesc.parentElement.id, JSON.stringify(tasks[newDesc.parentElement.id]));
+                let task = tasks.find(task => task.id === newDesc.parentElement.id);
+                task.desc = newDesc.innerHTML;
+                saveData();
             })
+        }
+        else if (target.closest('.task-list__btn__icon--delete')){
+            const completedListItem = event.target.closest('.task-list__item--completed');
+            completedListItem.remove();
+            tasks = tasks.filter(task => task.id !== completedListItem.id);
+            saveData();
         }
     });
 
@@ -117,10 +132,11 @@ document.addEventListener('DOMContentLoaded',() => {
                 const newTask = createTaskElement(addTaskDesc.value, "incomplete");
                 taskList.appendChild(newTask);
                 tasks.push({
+                     id: newTask.id,
                      desc: addTaskDesc.value,
                      status: "incomplete",
                  });
-                localStorage.setItem(tasks.length - 1, JSON.stringify(tasks[tasks.length - 1]));
+                saveData();
                 addTaskDesc.value = '';
             }
         }
@@ -131,17 +147,18 @@ document.addEventListener('DOMContentLoaded',() => {
                 const newTask = createTaskElement(addTaskDesc.value, "incomplete");
                 taskList.appendChild(newTask);
                 tasks.push({
+                     id: newTask.id,
                      desc: addTaskDesc.value,
                      status: "incomplete",
                  });
-                localStorage.setItem(tasks.length - 1, JSON.stringify(tasks[tasks.length - 1]));
+                saveData();
                 addTaskDesc.value = '';
             }
     })
 
         
     // return created task element 
-    function createTaskElement(desc, status){
+    function createTaskElement(desc, status, id = Date.now()){
         const taskEl = document.createElement('div');
         taskEl.classList.add('task-list__item','task-list__item--' + status);
 
@@ -149,7 +166,19 @@ document.addEventListener('DOMContentLoaded',() => {
         taskBtn.classList.add('task-list__btn', 'task-list__btn--' + status);
 
         const taskBtnIcon = document.createElement('i');
-        taskBtnIcon.classList.add('ph','ph-circle', 'task-list__btn__icon','task-list__btn__icon--' + status);
+        if(status === 'incomplete'){
+            taskBtnIcon.classList.add('ph');
+        }
+        else{
+            taskBtnIcon.classList.add('ph-fill');
+        }
+        taskBtnIcon.classList.add('ph-circle', 'task-list__btn__icon','task-list__btn__icon--' + status);
+
+        const delBtn = document.createElement('button');
+        delBtn.classList.add('task-list__btn', 'task-list__btn--delete');
+
+        const delBtnIcon = document.createElement('i');
+        delBtnIcon.classList.add('ph','ph-x', 'task-list__btn__icon','task-list__btn__icon--delete');
 
         const taskDesc = document.createElement('p');
         taskDesc.classList.add('task-list__item__desc');
@@ -158,16 +187,17 @@ document.addEventListener('DOMContentLoaded',() => {
         taskDesc.innerHTML = desc;
 
         taskBtn.appendChild(taskBtnIcon);
+        delBtn.appendChild(delBtnIcon);
         taskEl.appendChild(taskBtn);
         taskEl.appendChild(taskDesc);
-        taskEl.setAttribute('id', tasks.length);
+        taskEl.appendChild(delBtn);
+        taskEl.setAttribute('id', id);
         return taskEl;
     }
 
     function showTime(){
         let time = new Date;
-        // let month = time.getMonth();
-        // let day = time.getDay();
+        
         let hour = time.getHours();
         let min = time.getMinutes();
         let sec = time.getSeconds();
@@ -181,13 +211,6 @@ document.addEventListener('DOMContentLoaded',() => {
 
         let timeStr = hour + ":" + min + ":" + sec;
         document.getElementById('header__time').innerHTML = timeStr;
-
-        console.log(hour);
-        console.log(min);
-        console.log(sec);
-        console.log("----");
-        
-        // Add thing that when it hits midnight call showDate again
     }
 
     function showDate(){
@@ -263,22 +286,26 @@ document.addEventListener('DOMContentLoaded',() => {
         document.getElementById('header__date').innerHTML = dateStr;
     }
 
+    function saveData(){
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+
     function loadData(){
         if (localStorage.length > 0){
-            for(let i = 0; i < localStorage.length; i++){
-                let taskEl = localStorage.getItem(localStorage.key(i));
-                taskEl = JSON.parse(taskEl);
+            let savedList = JSON.parse(localStorage.getItem('tasks'));
+            savedList.forEach(taskEl => {
                 tasks.push(taskEl);
+                let elId = taskEl.id;
                 let elStatus = taskEl.status;
                 let elDesc = taskEl.desc;
-                let newEl = createTaskElement(elDesc, elStatus);
+                let newEl = createTaskElement(elDesc, elStatus, elId);
                 if(elStatus === "incomplete"){
                     taskList.appendChild(newEl);
                 }
                 else{
                     completedList.appendChild(newEl);
                 }
-            }
+            })
         }
     }
 
